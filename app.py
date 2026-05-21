@@ -44,6 +44,11 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+# CREATE DB TABLES FOR RENDER
+with app.app_context():
+    db.create_all()
+
+
 # HOME
 @app.route('/')
 def home():
@@ -160,7 +165,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-
     app.run(debug=True)
