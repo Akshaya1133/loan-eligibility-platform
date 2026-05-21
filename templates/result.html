@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom px-4">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold">📊 Loan Decision Result</a>
+        <a href="/dashboard" class="btn btn-outline-light btn-custom">Dashboard</a>
+    </div>
+</nav>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+
+    <div class="glass-card text-center col-md-8">
+
+        {% if "Approved" in result %}
+            <div class="result-approved">
+                <h1>🎉 Loan Approved!</h1>
+                <p class="lead mt-3">
+                    Congratulations! Based on the ML model assessment, the applicant appears eligible.
+                </p>
+            </div>
+        {% else %}
+            <div class="result-rejected">
+                <h1>❌ Loan Rejected</h1>
+                <p class="lead mt-3">
+                    Based on the submitted financial profile, eligibility criteria were not met.
+                </p>
+                <small>
+                    Common reasons: low income, poor credit history, high loan request, unfavorable profile.
+                </small>
+            </div>
+        {% endif %}
+
+        <div class="mt-5">
+            <a href="/predict" class="btn btn-success btn-lg btn-custom me-3">
+                Try Again
+            </a>
+
+            <a href="/dashboard" class="btn btn-outline-light btn-lg btn-custom">
+                Dashboard
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
